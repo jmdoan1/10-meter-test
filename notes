@@ -7,3 +7,16 @@ Design Assumptions:
 I already know how to conduct the test, so the tool doesn’t need to focus on teaching me about it. The tool doesn’t need to authenticate me or let me pick a patient, so it does not need to be secure. It needs to be easy to use and generate accurate text output.  The front end must be a in web-based technology, preferably React-JS, so that it is compatible with our application suite.
 
 ///
+
+Features:
+- Start and stop buttons
+    - or single stop/start button with changing text?
+- Time label
+    - option to show or hide? for aesthetics or motivational reasons i.e. "We're gonna hide the timer so you can't see but you should try to beat your last time"
+- Input for notes
+    - look into adding text to clipboard to add a "copy" button
+- Flag for with/without prosthesis?
+- Save list of records at least locally/per instance
+    - Require "submit" button to add record? Or save it autmoatically?
+        - Yes, require submit button be pressed because stopping the timer !== successful completion of test and it would be annoying to have to delete the record every time they had to stop the timer for any other reason
+- Compare avg times w/wo prosthesis and display x% improvement?

@@ -1,0 +1,7 @@
+Client,Project,Task,Date,Start,End,Duration,Note,Person
+Opie,Code Challenge,Development,8/24/18,15:19:35,16:01:40,0.7,Setting up basic timer template,
+Opie,Code Challenge,Development,8/24/18,14:57:00,15:04:31,0.13,"Minor refactoring, moving files and fixing path",
+Opie,Code Challenge,Misc,8/24/18,14:47:15,14:57:00,0.16,Removing boilerplate code and setting up github,
+Opie,Code Challenge,Misc,8/24/18,14:13:09,14:22:19,0.15,Initial project creation and setup,
+Opie,Code Challenge,Planning,8/24/18,15:04:31,15:19:34,0.25,Writing out features,
+Opie,Code Challenge,Planning,8/24/18,14:04:14,14:13:09,0.15,"Re-reading through user story, thinking of potential layout and features based on user needs",
