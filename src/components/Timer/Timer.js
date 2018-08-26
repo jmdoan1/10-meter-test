@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import TimerLabel from './TimerLabel/TimerLabel'
+import TimerInputs from './TimerInput/TimerInputs'
 
 class Timer extends Component {
 
@@ -11,11 +12,12 @@ class Timer extends Component {
         notes: "",
         running: false,
         timeStarted: 0,
-        timeStopped: 0
+        timeStopped: 0,
+        showSubmissionWarning: false
     }
 
-    toggleWithProsthesis = () => {
-      this.setState({ withProsthesis: !this.state.withProsthesis });
+    toggleWithProsthesis = (event) => {
+      this.setState({ withProsthesis: event.target.checked });
     }
   
     toggleRunning = () => {
@@ -37,6 +39,10 @@ class Timer extends Component {
         clearInterval(this.interval);
       }
     }
+
+    updateNotes = (event) => {
+        this.setState({notes: event.target.value})
+    }
   
     toggleTimerShowing = () => {
       this.setState({ showTime: !this.state.showTime });
@@ -51,6 +57,32 @@ class Timer extends Component {
         clearInterval(this.interval);
     }
 
+    submit = () => {
+        if (this.state.timeStarted > 0 && this.state.timeStopped > 0) {
+            this.props.submitAction({
+                timeStarted: this.state.timeStarted,
+                timeStopped: this.state.timeStopped,
+                time: this.state.time,
+                withProsthesis: this.state.withProsthesis,
+                notes: this.state.notes
+            })
+            this.reset()
+        } else {
+            this.setState({showSubmissionWarning: true})
+        }
+    }
+
+    reset = () => {
+        this.setState({
+            time: 0,
+            notes: "",
+            running: false,
+            timeStarted: 0,
+            timeStopped: 0,
+            showSubmissionWarning: false
+        })
+    }
+
     render () {
         let buttonStartText = "Start Timer"
       
@@ -58,17 +90,25 @@ class Timer extends Component {
           buttonStartText = "Stop Timer"
         }
 
-        let buttonHideText = "Show Time"
+        let buttonHideText = "Show Timer"
 
         let timerLabel = null;
 
         if (this.state.showTime) {
-            buttonHideText = "Hide Time";
+            buttonHideText = "Hide Timer";
             timerLabel = (
                 <TimerLabel
                     running={this.state.timerRunning}
                     startTime={this.state.startTime}
                     time={this.state.time} >{this.state.time}</TimerLabel>
+            );
+        }
+
+        let warningLabel = null;
+
+        if (this.state.showSubmissionWarning) {
+            warningLabel = (
+                <h6>Nothing to submit, please complete running the timer</h6>
             );
         }
 
@@ -79,12 +119,15 @@ class Timer extends Component {
                 <div>
                     {timerLabel}
                 </div>
-                <button onClick={this.toggleWithProsthesis}>Toggle Prosthesis</button>
+                <TimerInputs 
+                    changed={this.updateNotes}
+                    noteVal={this.state.notes}
+                    toggle={this.toggleWithProsthesis}
+                    checkVal={this.state.withProsthesis}/>
+                <button onClick={this.submit}>Submit Time</button>
                 <div>
-                    <label>Notes:     </label>
-                    <input type="text" />
+                    {warningLabel}
                 </div>
-                <button>Submit Time</button>
             </div>
         )
     };
