@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 
 class TimerLabel extends PureComponent {
 
-    time = this.props.time
+    state = {
+        time: this.props.time
+    }
 
     update = () => {
         if (this.props.running) {
-            this.time = Date.now() - this.props.startTime
-            //https://davidwalsh.name/react-force-render
-            this.forceUpdate()
+            this.setState({ time: Date.now() - this.props.startTime })
         }
     }
 
@@ -49,7 +49,7 @@ class TimerLabel extends PureComponent {
 
     render () {
         //Rounding off as integers then remultiplying to calculate remainders (time minus integerrMinute = time to be converted to seconds, etc )
-        const timeInMilliseconds = this.time
+        const timeInMilliseconds = this.state.time
         const timeInSeconds = Math.floor(timeInMilliseconds / 1000)
 
         const minutes = Math.floor( timeInMilliseconds / 60000 )

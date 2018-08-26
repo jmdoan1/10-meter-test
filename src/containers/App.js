@@ -30,6 +30,8 @@ class App extends Component {
   updateTime = () => {
     if (this.state.timerRunning) {
       this.setState({ time: Date.now() - this.state.startTime })
+    } else {
+      this.setState({ time: this.state.stopTime - this.state.startTime })
     }
   }
 

@@ -1,3 +1,5 @@
+https://www.hoursforteams.com/#/webreport/654118b027db2d8964bb72305a6c909e,,,,,,,,
+,,,,,,,,
 Client,Project,Task,Date,Start,End,Duration,Note,Person
 Opie,Code Challenge,Planning,8/24/18,14:04:14,14:13:09,0.15,"Re-reading through user story, thinking of potential layout and features based on user needs",
 Opie,Code Challenge,Misc,8/24/18,14:13:09,14:22:19,0.15,Initial project creation and setup,
@@ -14,3 +16,5 @@ Opie,Code Challenge,Development,8/25/18,22:10:39,22:21:14,0.18,,
 Opie,Code Challenge,Research,8/25/18,22:21:15,22:29:45,0.14,Text formatting for time label,
 Opie,Code Challenge,Development,8/26/18,2:09:15,3:15:54,1.11,"Updating timer label display, logic, and automatic updating",
 Opie,Code Challenge,Testing,8/26/18,3:15:54,3:23:00,0.12,,
+Opie,Code Challenge,Development,8/26/18,3:55:00,4:03:04,0.13,Retrying setState method in TimerLabel - works this time?,
+,,,,,Total,5.03,,
