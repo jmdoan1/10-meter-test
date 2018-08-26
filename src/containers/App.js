@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Timer from '../components/Timer/Timer';
+import TimerLabel from '../components/Timer/TimerLabel/TimerLabel';
 
 class App extends Component {
 
@@ -48,9 +48,11 @@ class App extends Component {
       <div className="App">
         <h1>10 Meter Walk Test</h1>
         <button onClick={this.toggleTimerRunning}>{buttonText}</button>
-        <button onClick={this.updateTime}>Update Time</button>
-        <h2 onClick={this.toggleTimerShowing}>{this.state.time} milliseconds ---- {this.state.time / 1000} seconds</h2>
-        <Timer onClick={this.toggleTimerShowing}>{this.state.time}</Timer>
+        <TimerLabel 
+          onClick={this.toggleTimerShowing} 
+          running={this.state.timerRunning} 
+          startTime={this.state.startTime}
+          time={this.state.time} ></TimerLabel>
         <button onClick={this.toggleWithProsthesis}>Toggle Prosthesis</button>
         <div>
           <text>Notes:     </text>
