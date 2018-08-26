@@ -1,4 +1,4 @@
-https://www.hoursforteams.com/#/webreport/654118b027db2d8964bb72305a6c909e,,,,,,,,
+https://www.hoursforteams.com/#/webreport/68f187700e5fe3a900a08b55f48c82e3,,,,,,,,
 ,,,,,,,,
 Client,Project,Task,Date,Start,End,Duration,Note,Person
 Opie,Code Challenge,Planning,8/24/18,14:04:14,14:13:09,0.15,"Re-reading through user story, thinking of potential layout and features based on user needs",
@@ -17,4 +17,9 @@ Opie,Code Challenge,Research,8/25/18,22:21:15,22:29:45,0.14,Text formatting for 
 Opie,Code Challenge,Development,8/26/18,2:09:15,3:15:54,1.11,"Updating timer label display, logic, and automatic updating",
 Opie,Code Challenge,Testing,8/26/18,3:15:54,3:23:00,0.12,,
 Opie,Code Challenge,Development,8/26/18,3:55:00,4:03:04,0.13,Retrying setState method in TimerLabel - works this time?,
-,,,,,Total,5.03,,
+Opie,Code Challenge,Development,8/26/18,10:47:22,11:29:42,0.71,"Creating Timer component to incorporate button, label and any new features - more refactoring of components and functions",
+Opie,Code Challenge,Testing,8/26/18,11:29:44,11:35:00,0.09,,
+Opie,Code Challenge,Development,8/26/18,11:35:00,11:37:29,0.04,"Code review, warning cleanup",
+Opie,Code Challenge,Development,8/26/18,11:37:31,11:50:35,0.22,Adding show/hide timer button and functionality,
+Opie,Code Challenge,Testing,8/26/18,11:50:35,11:52:47,0.04,,
+,,,,,Total,6.13,,
