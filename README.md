@@ -10,7 +10,7 @@
     5. Notes field for notes specific to this test
     6. Submit button to add test to local records
 2. ### Results
-    1. Results are displayed in chronological order and display
+    1. Results are displayed in chronological order and display:
         1. Time
         2. With Prosthesis (true or false)
         3. Notes

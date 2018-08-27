@@ -71,15 +71,15 @@ class TestResults extends Component {
         const avgWithout = sumWithout / resultsWithoutProsthesis.length
 
         //Always show the main avg. time (will default to 0:00:00 wih timeString)
-        let averages = [<h1 className={this.className(null)+"Text"}>Avg Time: {timeString(avgTotal)}</h1>];
+        let averages = [<h1 key="All" className={this.className(null)+"Text"}>Avg Time: {timeString(avgTotal)}</h1>];
 
         //Only show other avgs when relevant
         if (resultsWithoutProsthesis.length > 0) {
-            averages.push(<h1 className={this.className(false)+"Text"}>Avg Without Prosthesis: {timeString(avgWithout)}</h1>)
+            averages.push(<h1 key="Without" className={this.className(false)+"Text"}>Avg Without Prosthesis: {timeString(avgWithout)}</h1>)
         }
 
         if (resultsWithProsthesis.length > 0) {
-            averages.push(<h1 className={this.className(true)+"Text"}>Avg With Prosthesis: {timeString(avgWith)}</h1>)
+            averages.push(<h1 key="With" className={this.className(true)+"Text"}>Avg With Prosthesis: {timeString(avgWith)}</h1>)
         }
 
         let resultText = null;
@@ -102,7 +102,7 @@ class TestResults extends Component {
         //returns array of TestResult objects based on what's filtered to displayedResults
         const displayedResults = (
             resultsToDisplay.map((result, index) => {
-                return <TestResult result={result} />
+                return <TestResult key={index} result={result} />
             })
         );
 
