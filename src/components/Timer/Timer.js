@@ -84,6 +84,11 @@ class Timer extends Component {
         })
     }
 
+    buttonReset = () => {
+        this.setState({ running: false })
+        this.reset()
+    }
+
     render () {
         let buttonStartText = "Start Timer"
       
@@ -117,6 +122,7 @@ class Timer extends Component {
             <div className="Timer">
                 <button onClick={this.toggleRunning}>{buttonStartText}</button>
                 <button onClick={this.toggleTimerShowing}>{buttonHideText}</button>
+                <button onClick={this.buttonReset}>Reset Timer</button>
                 <div>
                     {timerLabel}
                 </div>

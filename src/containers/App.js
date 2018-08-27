@@ -16,12 +16,24 @@ class App extends Component {
     this.setState({tests: testsCopy})
   }
 
+  clear = () => {
+    this.setState({tests: []})
+  }
+
   render() {
+    let resultsDisplay = null;
+  
+    if (this.state.tests.length > 0) {
+      resultsDisplay = (
+        <TestResults results={this.state.tests} clearAction={this.clear}/>
+      );
+    }
+
     return (
       <div className="App">
         <h1>10 Meter Walk Test</h1>
         <Timer submitAction={this.submit}/>
-        <TestResults results={this.state.tests} />
+        {resultsDisplay}
       </div>
     );
   }

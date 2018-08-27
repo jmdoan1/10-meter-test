@@ -26,12 +26,18 @@ export const timeString = (time) => {
     }
 
     //Rounding off as integers then remultiplying to calculate remainders (time minus integerrMinute = time to be converted to seconds, etc )
-    const timeInMilliseconds = time
+    const timeInMilliseconds = Math.abs(time)
     const timeInSeconds = Math.floor(timeInMilliseconds / 1000)
 
     const minutes = Math.floor( timeInMilliseconds / 60000 )
     const seconds = Math.floor( (timeInMilliseconds / 1000) - (minutes * 60) )
     const milliseconds = Math.floor(timeInMilliseconds - (timeInSeconds * 1000))
 
-    return minutes.toString() + ":" + secondString(seconds) + ":" + millisecondString(milliseconds)
+    let returnString = secondString(minutes) + ":" + secondString(seconds) + ":" + millisecondString(milliseconds)
+
+    if (time < 0) {
+        returnString = "-" + returnString
+    }
+
+    return returnString
 };

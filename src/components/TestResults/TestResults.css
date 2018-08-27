@@ -1,11 +1,27 @@
-.GreenButton {
+.SelectedButton {
     box-shadow: 0px 0px 15px green;
-    width: 30%;
+    width: 25%;
     margin: 5px;
 }
 
-.RedButton {
-    box-shadow: 0px 0px 15px red;
-    width: 30%;
+.UnselectedButton {
+    box-shadow: 0px 3px 5px grey;
+    width: 25%;
     margin: 5px;
+}
+
+.SelectedText {
+    box-shadow: 0px 0px 15px green;
+}
+
+.UnselectedText {
+    box-shadow: 0px 3px 5px grey;
+}
+
+.GoodText {
+    color: green;
+}
+
+.BadText {
+    color: red;
 }
