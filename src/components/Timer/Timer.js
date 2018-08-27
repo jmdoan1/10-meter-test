@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Timer.css';
 
 import TimerLabel from './TimerLabel/TimerLabel'
 import TimerInputs from './TimerInput/TimerInputs'
@@ -100,7 +101,7 @@ class Timer extends Component {
                 <TimerLabel
                     running={this.state.timerRunning}
                     startTime={this.state.startTime}
-                    time={this.state.time} >{this.state.time}</TimerLabel>
+                    time={this.state.time} />
             );
         }
 
@@ -108,12 +109,12 @@ class Timer extends Component {
 
         if (this.state.showSubmissionWarning) {
             warningLabel = (
-                <h6>Nothing to submit, please complete running the timer</h6>
+                <label>Nothing to submit, please complete running the timer</label>
             );
         }
 
         return (
-            <div>
+            <div className="Timer">
                 <button onClick={this.toggleRunning}>{buttonStartText}</button>
                 <button onClick={this.toggleTimerShowing}>{buttonHideText}</button>
                 <div>
@@ -125,7 +126,7 @@ class Timer extends Component {
                     toggle={this.toggleWithProsthesis}
                     checkVal={this.state.withProsthesis}/>
                 <button onClick={this.submit}>Submit Time</button>
-                <div>
+                <div className="WarningLabel">
                     {warningLabel}
                 </div>
             </div>

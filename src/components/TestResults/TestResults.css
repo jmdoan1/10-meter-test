@@ -1,0 +1,11 @@
+.GreenButton {
+    box-shadow: 0px 0px 15px green;
+    width: 30%;
+    margin: 5px;
+}
+
+.RedButton {
+    box-shadow: 0px 0px 15px red;
+    width: 30%;
+    margin: 5px;
+}

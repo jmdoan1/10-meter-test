@@ -1,0 +1,13 @@
+.ResultLabel {
+    margin: 2px;
+    padding: 1px;
+    font-size: 10px;
+}
+
+.ResultDiv {
+    display: inline-block;
+    border: 1px dashed black;
+    width: 30%;
+    margin: 3px;
+    padding: 1px;
+}

@@ -1,0 +1,9 @@
+.Timer {
+    /* width: 60%; */
+    align-content: flex-start;
+}
+
+.WarningLabel {
+    font-size: 10px;
+    margin-top: 10px;
+  }

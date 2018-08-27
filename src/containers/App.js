@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Timer from '../components/Timer/Timer'
+import Timer from '../components/Timer/Timer';
+import TestResults from '../components/TestResults/TestResults';
 
 class App extends Component {
 
@@ -19,8 +20,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>10 Meter Walk Test</h1>
-        <Timer 
-          submitAction={this.submit}/>
+        <Timer submitAction={this.submit}/>
+        <TestResults results={this.state.tests} />
       </div>
     );
   }
