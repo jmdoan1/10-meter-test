@@ -6,35 +6,39 @@ import { timeString } from '../../models/TimeString'
 
 class TestResults extends Component {
     state = {
-        filter: null
+        displayFilter: null
     }
 
     include = (result) => {
-        return (this.state.filter === null || this.state.filter === result.withProsthesis)
+        //if filter is null, include all, otherwise check against prosthesis flag
+        return (this.state.displayFilter === null || this.state.displayFilter === result.withProsthesis)
     }
 
     includeWith = (result) => {
+        //Return everything "With" prosthesis
         return (result.withProsthesis === true)
     }
 
     includeWithout = (result) => {
+        //Return everything "Without" prosthesis
         return (result.withProsthesis === false)
     }
 
     clearFilter = () => {
-        this.setState({filter: null})
+        this.setState({displayFilter: null})
     }
 
     filterTrue = () => {
-        this.setState({filter: true})
+        this.setState({displayFilter: true})
     }
 
     filterFalse = () => {
-        this.setState({filter: false})
+        this.setState({displayFilter: false})
     }
 
+    //determine both SelectedButton and SelectedText classnames for below
     className = (props) => {
-        if (props === this.state.filter) {
+        if (props === this.state.displayFilter) {
             return "Selected"
         } else {
             return "Unselected"
@@ -48,23 +52,28 @@ class TestResults extends Component {
         const resultsWithProsthesis = results.filter(this.includeWith)
         const resultsWithoutProsthesis = results.filter(this.includeWithout)
 
+        //Total and avg times for all tests
         const sumTotal = results.reduce(function(sum, res) {
             return sum + res.time;
         }, 0);
         const avgTotal = sumTotal / results.length
         
+        //Total and avg times for tests w/ prosthesis
         const sumWith = resultsWithProsthesis.reduce(function(sum, res) {
             return sum + res.time;
         }, 0);
         const avgWith = sumWith / resultsWithProsthesis.length
 
+        //Total and avg times for tests w/o prosthesis
         const sumWithout = resultsWithoutProsthesis.reduce(function(sum, res) {
             return sum + res.time;
         }, 0);
         const avgWithout = sumWithout / resultsWithoutProsthesis.length
 
+        //Always show the main avg. time (will default to 0:00:00 wih timeString)
         let averages = [<h1 className={this.className(null)+"Text"}>Avg Time: {timeString(avgTotal)}</h1>];
 
+        //Only show other avgs when relevant
         if (resultsWithoutProsthesis.length > 0) {
             averages.push(<h1 className={this.className(false)+"Text"}>Avg Without Prosthesis: {timeString(avgWithout)}</h1>)
         }
@@ -79,10 +88,10 @@ class TestResults extends Component {
             const timeImprovement = avgWithout - avgWith
             const percentImprovement = timeImprovement / avgWithout * 100
 
-            let textClass = "GoodText"
+            let textClass = "GoodText" // :)
 
             if (percentImprovement < 0) {
-                textClass = "BadText"
+                textClass = "BadText" // :( maybe don't submit this one to the insurance co.
             }
 
             resultText = (
@@ -90,6 +99,7 @@ class TestResults extends Component {
             );
         }
 
+        //returns array of TestResult objects based on what's filtered to displayedResults
         const displayedResults = (
             resultsToDisplay.map((result, index) => {
                 return <TestResult result={result} />
@@ -98,6 +108,7 @@ class TestResults extends Component {
 
         return (
             <div>
+                <h1>Test Results</h1>
                 <div>
                     <label>Filter: </label>
                     <button onClick={this.clearFilter} className={this.className(null)+"Button"}>All</button>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Timer.css';
 
 import TimerLabel from './TimerLabel/TimerLabel'
-import TimerInputs from './TimerInput/TimerInputs'
+import TimerInputs from './TimerInputs/TimerInputs'
 
 class Timer extends Component {
 
@@ -17,17 +17,20 @@ class Timer extends Component {
         showSubmissionWarning: false
     }
 
-    toggleWithProsthesis = (event) => {
+    timeInterval = 25 //not too much but still "visually blurry"
+
+    //"With prosthesis" value will reflect checkbox 
+    setWithProsthesis = (event) => {
       this.setState({ withProsthesis: event.target.checked });
     }
   
     toggleRunning = () => {
       if (this.state.running) {
         this.setState({ running: false, timeStopped: Date.now(), time: Date.now() - this.state.timeStarted });
-        clearInterval(this.interval);
+        clearInterval(this.interval); //cancel auto-refreshing interval when not necessary
       } else {
-        this.setState({ running: true, timeStarted: Date.now(), timeStopped: 0 });
-        this.interval = setInterval(() => this.updateTime(), 1);
+        this.setState({ running: true, timeStarted: Date.now(), timeStopped: 0 }); //timeStopped value needs to equal 0 when timer is running. Non-zero value is used to determine completion
+        this.interval = setInterval(() => this.updateTime(), this.timeInterval); //restart auto-refreshing interval when necessary
       }
     }
   
@@ -37,7 +40,7 @@ class Timer extends Component {
             this.setState({ time: Date.now() - this.state.timeStarted })
           }
       } else {
-        clearInterval(this.interval);
+        clearInterval(this.interval); //if timer isn't running, go ahead and cancel.
       }
     }
 
@@ -51,7 +54,7 @@ class Timer extends Component {
 
     componentDidMount() {
         //https://stackoverflow.com/a/39426846/4948354
-        this.interval = setInterval(() => this.updateTime(), 1);
+        this.interval = setInterval(() => this.updateTime(), this.timeInterval); //start checking for time updates immediately
     }
     
     componentWillUnmount() {
@@ -59,6 +62,7 @@ class Timer extends Component {
     }
 
     submit = () => {
+        //Check if timer has been run and stopped
         if (this.state.timeStarted > 0 && this.state.timeStopped > 0) {
             this.props.submitAction({
                 timeStarted: this.state.timeStarted,
@@ -69,11 +73,13 @@ class Timer extends Component {
             })
             this.reset()
         } else {
+            //Warn the user they can't submit
             this.setState({showSubmissionWarning: true})
         }
     }
 
     reset = () => {
+        //reset everything except withProsthesis and showTimer toggles
         this.setState({
             time: 0,
             notes: "",
@@ -82,11 +88,6 @@ class Timer extends Component {
             timeStopped: 0,
             showSubmissionWarning: false
         })
-    }
-
-    buttonReset = () => {
-        this.setState({ running: false })
-        this.reset()
     }
 
     render () {
@@ -104,8 +105,6 @@ class Timer extends Component {
             buttonHideText = "Hide Timer";
             timerLabel = (
                 <TimerLabel
-                    running={this.state.timerRunning}
-                    startTime={this.state.startTime}
                     time={this.state.time} />
             );
         }
@@ -122,15 +121,16 @@ class Timer extends Component {
             <div className="Timer">
                 <button onClick={this.toggleRunning}>{buttonStartText}</button>
                 <button onClick={this.toggleTimerShowing}>{buttonHideText}</button>
-                <button onClick={this.buttonReset}>Reset Timer</button>
+                <button onClick={this.reset}>Reset Timer</button>
                 <div>
                     {timerLabel}
                 </div>
                 <TimerInputs 
-                    changed={this.updateNotes}
-                    noteVal={this.state.notes}
-                    toggle={this.toggleWithProsthesis}
-                    checkVal={this.state.withProsthesis}/>
+                    changed={this.updateNotes} //passed to text input
+                    noteVal={this.state.notes} //passed to text input
+                    toggle={this.setWithProsthesis} //passed to checkbox input
+                    checkVal={this.state.withProsthesis} //passed to checkbox input
+                    />
                 <button onClick={this.submit}>Submit Time</button>
                 <div className="WarningLabel">
                     {warningLabel}

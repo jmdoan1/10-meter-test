@@ -7,25 +7,27 @@ import TestResults from '../components/TestResults/TestResults';
 class App extends Component {
 
   state = {
-    tests: []
+    testResults: []
   }
 
+  //Accepts test result data and adds to state
   submit = (props) => {
-    const testsCopy = [...this.state.tests]
+    const testsCopy = [...this.state.testResults]
     testsCopy.push(props)
-    this.setState({tests: testsCopy})
+    this.setState({testResults: testsCopy})
   }
 
   clear = () => {
-    this.setState({tests: []})
+    this.setState({testResults: []})
   }
 
   render() {
     let resultsDisplay = null;
   
-    if (this.state.tests.length > 0) {
+    //Only show results section if there are results
+    if (this.state.testResults.length > 0) {
       resultsDisplay = (
-        <TestResults results={this.state.tests} clearAction={this.clear}/>
+        <TestResults results={this.state.testResults} clearAction={this.clear}/>
       );
     }
 
